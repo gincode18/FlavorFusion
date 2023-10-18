@@ -7,12 +7,13 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import Loading from './loading';
 import { CachedImage } from '../helper/image';
 import { useNavigation } from '@react-navigation/native';
+import { router } from 'expo-router';
 
 export default function Recipes({categories, meals}:any) {
     const navigation = useNavigation();
   return (
     <View className="mx-4 space-y-3">
-      <Text style={{fontSize: hp(3)}} className="font-semibold text-neutral-600">Recipes</Text>
+      <Text style={{fontSize: hp(3)}} className="font-semibold  text-accent ">Recipes</Text>
       <View>
         {
             categories.length==0 || meals.length==0?(
@@ -44,7 +45,9 @@ const RecipeCard = ({item, index, navigation}:any)=>{
             <Pressable
                 style={{width: '100%', paddingLeft: isEven? 0:8, paddingRight: isEven?8:0}}
                 className="flex justify-center mb-4 space-y-1"
-                onPress={()=> navigation.navigate('RecipeDetail', {...item})}
+                // onPress={()=> router.replace('/recipe/123')}
+                //@ts-ignore
+                onPress={()=> router.push({ pathname: `/recipe/${item.idMeal}`, params: {...item} })}
             >
                 <CachedImage
                      uri= {item.strMealThumb}
@@ -52,7 +55,7 @@ const RecipeCard = ({item, index, navigation}:any)=>{
                      className="bg-black/5"
                      sharedTransitionTag={item.strMeal}
                 />
-                <Text style={{fontSize: hp(1.5)}} className="font-semibold ml-2 text-neutral-600">
+                <Text style={{fontSize: hp(1.5)}} className=" font-extrabold ml-2  text-secondary text-xl ">
                     {
                         item.strMeal.length>20? item.strMeal.slice(0,20)+'...': item.strMeal
                     }

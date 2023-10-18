@@ -17,7 +17,7 @@ export default function Categories({categories, activeCategory, handleChangeCate
         {
             categories.map((cat:any, index:any)=>{
                 let isActive = cat.strCategory==activeCategory;
-                let activeButtonClass = isActive? 'bg-amber-400': ' bg-black/10';
+                let activeButtonClass = isActive? 'bg-primary': ' bg-accent';
                 return (
                     <TouchableOpacity
                         key={index}
@@ -31,7 +31,7 @@ export default function Categories({categories, activeCategory, handleChangeCate
                                 className="rounded-full"
                             />
                         </View>
-                        <Text className="text-neutral-600" style={{fontSize: hp(1.6)}}>
+                        <Text className={isActive?" text-primary font-extrabold":" text-secondary"} style={{fontSize: hp(1.6)}}>
                             {cat.strCategory}
                         </Text>
                     </TouchableOpacity>

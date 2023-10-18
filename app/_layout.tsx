@@ -19,6 +19,14 @@ export default function Layout() {
           title: "",
         }}
       ></Stack.Screen>
+            <Stack.Screen
+        name="recipe/[id]"
+        options={{
+          headerTransparent: true,
+          title: "",
+           headerBackVisible:false
+        }}
+      ></Stack.Screen>
     </Stack>
   );
 }
